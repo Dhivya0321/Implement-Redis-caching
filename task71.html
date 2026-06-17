@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redis Cache Demo</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Redis Caching Example</h2>
+
+<button onclick="getData()">
+    Fetch Data
+</button>
+
+<div id="result"></div>
+
+<script>
+
+async function getData() {
+
+    const response =
+        await fetch(
+            "http://localhost:3000/data"
+        );
+
+    const data =
+        await response.json();
+
+    document.getElementById(
+        "result"
+    ).innerHTML = `
+        <h3>${data.source}</h3>
+        <p>ID: ${data.data.id}</p>
+        <p>Name: ${data.data.name}</p>
+        <p>Course: ${data.data.course}</p>
+    `;
+}
+
+</script>
+
+</body>
+</html>
